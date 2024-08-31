@@ -1,20 +1,39 @@
 //Task-1:Compare 2 json have with same properties without order
-function areObjectsEqual(obj1,obj2){
-  const newObj1=JSON.stringify(obj1);
-  const newObj2=JSON.stringify(obj2);
-  return(newObj1===newObj2);
+function areObjectsEqual(obj1, obj2) {
+  // Check if both arguments are objects and not null
+  if (typeof obj1 !== 'object' || obj1 === null || typeof obj2 !== 'object' || obj2 === null) {
+    return obj1 === obj2;
+  }
+  // Get the keys of both objects
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+  // Check if both objects have the same number of keys
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+  // Check if all keys in obj1 are in obj2 and have the same values
+  for (const key of keys1) {
+    if (!keys2.includes(key) || !areObjectsEqual(obj1[key], obj2[key])) {
+      return false;
+    }
+  }
+
+  return true;
 }
-let obj1=
-{
-name:"person 1",
-age:5
+
+// Example usage
+let obj1 = {
+  name: "person 1",
+  age: 5
 };
-let obj2=
-{
-  age:5,
-  name:"person 1"
-}
-console.log(areObjectsEqual(obj1,obj2));
+
+let obj2 = {
+  age: 5,
+  name: "person 1"
+};
+
+console.log(areObjectsEqual(obj1, obj2)); // This should return true
+
 
 //Task_2:Displays all countries flag in console
 var request = new XMLHttpRequest();
