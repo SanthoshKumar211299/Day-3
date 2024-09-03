@@ -5,4 +5,4 @@
 
 **Task_2:** Displays all countries flag in console
 
-           Print all countries name,region,subregion and population
+          Print all countries name,region,subregion and population
